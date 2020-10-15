@@ -4,6 +4,13 @@ const app = express();
 const port = 5000; 
 app.use(express.static("public"));  
 app.use(express.json()); 
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(`${__dirname}/public/index.html`));
+});
+
+
+
 const {
     getAllPlayers,
     addPlayer
