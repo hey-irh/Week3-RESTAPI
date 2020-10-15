@@ -6,8 +6,8 @@ async function getAllPlayers(){
     return result.rows;
 }
 
-async function addPlayer(name){
-    const result = await query (`INSERT INTO scoreboard (name) VALUES ($1) RETURNING id;`, [name]) //check this is coming in the correct format
+async function addPlayer(name, score){
+    const result = await query (`INSERT INTO scoreboard ( name, score ) VALUES ($1, $2) RETURNING id;`, [name, score]) //check this is coming in the correct format
     return result.rows[0].id;  
 }
 
