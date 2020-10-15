@@ -5,7 +5,7 @@ const initialUpload = [
   {
     name: "bob moses",
     score: 20
-  }
+  },
   {
     name: "Ruth Mudley",
     score: 12
@@ -14,4 +14,15 @@ const initialUpload = [
 
 let sqlStatement = `
 INSERT INTO scoreboard (name, score)
-VALUES ($1, $2, $3)`
+VALUES ($1, $2)`
+
+async function uploadScores(){
+  console.log("UPLOADING SCORES...");
+  initialUpload.forEach(async function({name, score}){
+    await query (sqlStatement, [name, score])
+    console.log (`${name} added to the database`)
+  });
+}
+
+uploadScores();
+
