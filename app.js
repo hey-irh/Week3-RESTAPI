@@ -16,14 +16,14 @@ app.listen(port, () => {
   }
 );
 
-app.get("/scoreboard", async function (req,res){
+app.get("/api/scoreboard", async function (req,res){
     const players = await getAllPlayers();
     res.json({success: true, playload: players});
     console.log(players);
 });
 
 
-app.post("/scoreboard", async function (req,res){
+app.post("/api/scoreboard", async function (req,res){
     const { name } = req.body;
     const id = await addPlayer(name);
     res.json({success: true, message: `player has been created with ${id}`})
