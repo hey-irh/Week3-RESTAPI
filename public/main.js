@@ -4,10 +4,15 @@ let inputName = document.querySelector("#inputName");
 let inputScore = document.querySelector("#inputScore");
 let playerButton = document.querySelector("#playerButton");
 let scoreButton = document.querySelector("#scoreButton");
-let scoreboard = document.querySelector("#scoreboard");
+let scoreSection = document.querySelector("#scoreboard");
+let leaderboard = document.querySelector("#order");
+let clearButton = document.querySelector("#clear");
+
 
 playerButton.addEventListener('click', handleSubmit);
 scoreButton.addEventListener('click', handleClick);
+leaderboard.addEventListener('click', handleButton);
+clearButton.addEventListener('click', handleClear);
 
 function handleClick(event) {
   event.preventDefault();
@@ -18,13 +23,39 @@ async function getScore() {
   const response = await fetch(`http://localhost:5000/api/scoreboard`);
   console.log(response);
   const { payload } = await response.json();
-  scoreSection.innerHTML = '';
+  // scoreSection.innerHTML = '';
   console.log(payload);
   payload.forEach(renderScore);
 }
 
+function handleButton(event) {
+  event.preventDefault();
+  orderBy();
+}
+
+async function orderBy() {
+  const response = await fetch(`http://localhost:5000/api/scoreboard`);
+  console.log(response);
+  const { payload } = await response.json();
+  // scoreSection.innerHTML = '';
+  console.log(payload);
+  payload.sort(function(a,b) {
+    return b.score - a.score;
+  });
+  payload.forEach(renderScore);
+}
+
+function handleClear(event) {
+  event.preventDefault();
+  clearIt();
+}
+
+function clearIt() {
+  location.reload();
+}
+
 function renderScore(score) {
-  const article = createCatArticle(score);
+  const article = createScoreArticle(score);
   scoreSection.appendChild(article);
 }
 
@@ -39,7 +70,7 @@ function createScoreArticle({ name, score }) {
   return article;
 }
 
-getScore();
+
 
 // ADD PLAYER
 

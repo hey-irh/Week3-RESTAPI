@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
   <title>Scoreboard</title>
 </head>
-<body>
-  <input id="inputName" type="text">
-  <input id="inputScore" type="text">
 
-  <button id="playerButton">Add Player</button>
+<body>
+  <div class="inputHolder">
+    <input id="inputName" type="text" placeholder="Name...">
+    <input id="inputScore" type="text" placeholder="Score...">
+    <button id="playerButton">Add Player</button>
+  </div>
+  
+<div class="secondHolder">
   <button id="scoreButton">Get Score</button>
+  <button id="order">Leaderboard</button>
+  <button id="clear">Clear</button>
 
   <section id="scoreboard"></section>
+</div>
 
   <script src="main.js"></script>
 
 </body>
+
 </html>
