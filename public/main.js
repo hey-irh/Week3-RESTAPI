@@ -6,7 +6,7 @@ let playerButton = document.querySelector("#playerButton");
 let scoreButton = document.querySelector("#scoreButton");
 let scoreboard = document.querySelector("#scoreboard");
 
-// playerButton.addEventListener('click', handleSubmit);
+playerButton.addEventListener('click', handleSubmit);
 scoreButton.addEventListener('click', handleClick);
 
 function handleClick(event) {
@@ -15,7 +15,8 @@ function handleClick(event) {
 }
 
 async function getScore() {
-  const response = await fetch(`${url}/scoreboard`);
+  const response = await fetch(`http://localhost:5000/api/scoreboard`);
+  console.log(response);
   const { payload } = await response.json();
   scoreSection.innerHTML = '';
   console.log(payload);
@@ -39,3 +40,31 @@ function createScoreArticle({ name, score }) {
 }
 
 getScore();
+
+// ADD PLAYER
+
+function handleSubmit(event) {
+  event.preventDefault();
+  addPlayer();
+}
+
+async function addPlayer() {
+  console.log(gatherFormData());
+  const response = await fetch(`http://localhost:5000/api/scoreboard`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(gatherFormData()),
+  });
+  const data = await response.json();
+  console.log(data);
+}
+
+function gatherFormData() {
+  const name = inputName.value;
+  const score = inputScore.value;
+  return {
+    name,
+    score,
+  };
+}
+

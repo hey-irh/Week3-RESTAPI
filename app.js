@@ -5,26 +5,26 @@ const port = 5000;
 app.use(express.static("public"));  
 app.use(express.json()); 
 
+const {
+  getAllPlayers,
+  addPlayer
+} = require('./models/players');
+
 app.get('/', function (req, res) {
   res.sendFile(path.join(`${__dirname}/public/index.html`));
 });
 
 
-
-const {
-    getAllPlayers,
-    addPlayer
-} = require('./models/players');
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
   }
 );
-app.get("/scoreboard", async function (req,res){
+app.get("/api/scoreboard", async function (req,res){
     const players = await getAllPlayers();
     res.json({success: true, payload: players});
     console.log(players);
 });
-app.post("/scoreboard", async function (req,res){
+app.post("/api/scoreboard", async function (req,res){
     const { name } = req.body;
     const { score } = req.body;
     const id = await addPlayer(name, score);
