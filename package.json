@@ -1,0 +1,25 @@
+{
+  "name": "hackathon-energiser-score-tracker-isabel-brad",
+  "version": "1.0.0",
+  "description": "Fullstack app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "create-table": "node db/scripts/createTable"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SchoolOfCode/hackathon-energiser-score-tracker-isabel-brad.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SchoolOfCode/hackathon-energiser-score-tracker-isabel-brad/issues"
+  },
+  "homepage": "https://github.com/SchoolOfCode/hackathon-energiser-score-tracker-isabel-brad#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "pg": "^8.4.1"
+  }
+}
