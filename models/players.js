@@ -15,9 +15,16 @@ async function deletePlayer(id){
   //return result.row[0].name;
 }
 
+async function updatePlayer(id, score){
+  const result = await query (`UPDATE scoreboard SET score = ${score} WHERE id = ${id}`)
+  console.log(result);
+  return result;  
+}
+
 
   module.exports = {
     getAllPlayers,
     addPlayer,
-    deletePlayer
+    deletePlayer,
+    updatePlayer
   };

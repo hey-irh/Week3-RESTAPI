@@ -1,8 +1,19 @@
 body {
+  background-color: lightblue;
   display: flex;
   flex-direction: column;;
   justify-content: center;
   align-items: center;
+  
+}
+
+#body2 {
+  background-color: lightblue;  
+}
+
+#title {
+  font-family: 'Kanit', sans-serif;
+  padding-top: 40px;
 }
 
 .inputHolder{

@@ -10,28 +10,18 @@ let scoreSection = document.querySelector("#scoreboard");
 let leaderboard = document.querySelector("#order");
 let clearButton = document.querySelector("#clear");
 let deleteButton = document.querySelector("#delete");
+let updateButton = document.querySelector("#update");
+let winner = document.querySelector("#winner");
 
 
 
 playerButton.addEventListener('click', handleSubmit);
-scoreButton.addEventListener('click', handleClick);
+// scoreButton.addEventListener('click', handleClick);
 leaderboard.addEventListener('click', handleButton);
 clearButton.addEventListener('click', handleClear);
 deleteButton.addEventListener('click', handleDelete);
+updateButton.addEventListener('click', handleUpdate);
 
-function handleClick(event) {
-  event.preventDefault();
-  getScore();
-}
-
-async function getScore() {
-  const response = await fetch(`http://localhost:5000/api/scoreboard`);
-  console.log(response);
-  const { payload } = await response.json();
-  // scoreSection.innerHTML = '';
-  console.log(payload);
-  payload.forEach(renderScore);
-}
 
 function handleButton(event) {
   event.preventDefault();
@@ -48,6 +38,8 @@ async function orderBy() {
     return b.score - a.score;
   });
   payload.forEach(renderScore);
+  winner.innerText = `Winner: ${payload[0].name} ⭐ ⭐ ⭐`;
+
 }
 
 function handleClear(event) {
@@ -59,21 +51,6 @@ function clearIt() {
   location.reload();
 }
 
-  // function renderScore(score) {
-  //   const article = createScoreArticle(score);
-  //   scoreSection.appendChild(article);
-  // }
-
-  // function createScoreArticle({ name, score }) {
-  //   const article = document.createElement('article');
-  //   const h2ScoreName = document.createElement('h2');
-  //   h2ScoreName.innerText = `Name: ${name}`;
-  //   const h3Score = document.createElement('h3');
-  //   h3Score.innerText = `Score: ${score}`;
-  //   article.appendChild(h2ScoreName);
-  //   article.appendChild(h3Score);
-  //   return article;
-  // }
 
   function renderScore(score) {
     const article = createScoreArticle(score);
@@ -143,3 +120,48 @@ function gatherDeleteData() {
     id
   };
 }
+
+function handleUpdate(event) {
+  event.preventDefault();
+  updatePlayer();
+}
+
+async function updatePlayer() {
+  const response = await fetch(`http://localhost:5000/api/scoreboard`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(gatherUpdateData()),
+  });
+  // const data = await response.json();
+}
+
+function gatherUpdateData() {
+  const id = inputId.value;
+  const score = inputScore.value;
+  return {
+    id,
+    score
+  };
+}
+
+
+
+
+
+
+
+
+// function handleClick(event) {
+//   event.preventDefault();
+//   getScore();
+// }
+
+// async function getScore() {
+//   const response = await fetch(`http://localhost:5000/api/scoreboard`);
+//   console.log(response);
+//   const { payload } = await response.json();
+//   // scoreSection.innerHTML = '';
+//   console.log(payload);
+//   payload.forEach(renderScore);
+  
+// }

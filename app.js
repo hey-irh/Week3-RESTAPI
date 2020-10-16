@@ -11,7 +11,8 @@ app.use(cors());
 const {
   getAllPlayers,
   addPlayer,
-  deletePlayer
+  deletePlayer,
+  updatePlayer
 } = require('./models/players');
 
 app.get('/', function (req, res) {
@@ -40,4 +41,14 @@ app.delete("/api/scoreboard", async function (req, res){
   const { id } = req.body;
   const result = await deletePlayer(id);
   res.json(result);
+})
+
+app.put("/api/scoreboard", async function (req, res){
+  const { id } = req.body;
+  const { score } = req.body;
+  const result = await updatePlayer(id, score);
+  res.json(result);
+  console.log(id);
+  console.log(score);
+  // console.log(result);
 })
