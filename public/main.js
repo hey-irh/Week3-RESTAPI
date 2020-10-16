@@ -2,7 +2,7 @@
 const url = "/api";
 
 let inputName = document.querySelector("#inputName");
-let inputScore = document.querySelector("#inputScore");
+let inputScore = document.querySelector(".inputScore");
 let inputId = document.querySelector("#inputId");
 let playerButton = document.querySelector("#playerButton");
 let scoreButton = document.querySelector("#scoreButton");
@@ -12,6 +12,7 @@ let clearButton = document.querySelector("#clear");
 let deleteButton = document.querySelector("#delete");
 let updateButton = document.querySelector("#update");
 let winner = document.querySelector("#winner");
+let updateScore = document.querySelector(".updateScore");
 
 
 
@@ -51,7 +52,6 @@ function clearIt() {
   location.reload();
 }
 
-
   function renderScore(score) {
     const article = createScoreArticle(score);
     scoreSection.appendChild(article);
@@ -60,11 +60,21 @@ function clearIt() {
   function createScoreArticle({ name, score }) {
     const tr = document.createElement('tr');
     const h2ScoreName = document.createElement('td');
-    h2ScoreName.innerText = `Name: ${name}`;
+    h2ScoreName.innerText = `${name}`;
     tr.appendChild(h2ScoreName)
     const h3Score = document.createElement('td');
-    h3Score.innerText = `Score: ${score}`;
+    
+
+    if (score > 50 ){
+      h3Score.innerText = `Score: ${score} ⭐ ⭐`;
+    }
+    else if (score < 0){
+      h3Score.innerText = `Score: ${score}  ❌`;
+    } 
+    else h3Score.innerText = `Score: ${score} ⭐`;
+
     tr.appendChild(h3Score);
+
     return tr;
   }
 
@@ -137,13 +147,12 @@ async function updatePlayer() {
 
 function gatherUpdateData() {
   const id = inputId.value;
-  const score = inputScore.value;
+  const score = updateScore.value;
   return {
     id,
     score
   };
 }
-
 
 
 
