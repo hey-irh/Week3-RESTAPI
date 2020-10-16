@@ -10,7 +10,8 @@ app.use(cors());
 
 const {
   getAllPlayers,
-  addPlayer
+  addPlayer,
+  deletePlayer
 } = require('./models/players');
 
 app.get('/', function (req, res) {
@@ -34,3 +35,9 @@ app.post("/api/scoreboard", async function (req,res){
     res.json({success: true, message: `player has been created with ${id}`})
     console.log("WORKING")
 });
+
+app.delete("/api/scoreboard", async function (req, res){ 
+  const { id } = req.body;
+  const result = await deletePlayer(id);
+  res.json(result);
+})

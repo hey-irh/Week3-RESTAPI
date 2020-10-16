@@ -7,7 +7,17 @@ async function addPlayer(name, score){
     const result = await query (`INSERT INTO scoreboard ( name, score ) VALUES ($1, $2) RETURNING id;`, [name, score]) //check this is coming in the correct format
     return result.rows[0].id;  
 }
+
+async function deletePlayer(id){
+  console.log(id)
+  const result = await query (`DELETE FROM scoreboard WHERE id = ${id}`);
+  console.log(`${id} Deleted`)
+  //return result.row[0].name;
+}
+
+
   module.exports = {
     getAllPlayers,
-    addPlayer
+    addPlayer,
+    deletePlayer
   };

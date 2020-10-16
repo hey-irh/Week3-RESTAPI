@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "create-table": "node db/scripts/createTable",
     "populate-table": "node db/scripts/populateTable",
+    "delete-null": "node db/scripts/deleteNull",
     "start": "node app.js"
   },
   "repository": {
