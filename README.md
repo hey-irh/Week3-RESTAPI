@@ -1,12 +1,21 @@
 # Energiser Score Tracker
 
-We will be building our first full stack app. It will be a chance to embed everything we've learnt so far and practice breaking down problems into solvable chunks.
+Week 3 on the School of Code : my first full stack app, built in 1 day in a pair. This score board uses heroku database and a REST API.
 
-## Requirements
+## How to use the App
 
-- Must use a Database for persistent storage
-- Must use the model pattern to allow easy interaction with the data
-- Must use an REST API server to manage requests and serve back data
-- Must have a front end which allows users to at least view the data
+- Add a player and their score the the scoreboard.
+- View the scoreboard from highest to lowest score with the top positions being awarded stars.
+- Delete and edit a player by the players unique ID.
 
-The rest is up to you!
+### To run it locally `npm start`
+
+Runs the app in the development mode.\
+Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
+
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
+
+### Tech Used
+
+HTML, CSS, Javascript, Node.js, Heroku
